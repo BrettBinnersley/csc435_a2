@@ -69,7 +69,7 @@ public class GooMain {
         CommonTokenStream tokens = new CommonTokenStream(lexer);
 
 		// Parse the Goo source file, creating a parse tree
-        GooParser parser = new GooPars er(tokens);
+        GooParser parser = new GooParser(tokens);
         ParseTree tree = parser.sourceFile();	// sourceFile is start symbol
 
         if (printTree) {
