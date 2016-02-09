@@ -146,7 +146,7 @@ public class SymTabVisitor1 extends GooBaseVisitor<Type> {
 		if (ids != null) {
 		    for( Token t : ids ) {
 		        String id = t.getText();
-		        Symbol sy = new Symbol(id, Symbol.Kind.Field, typ, currentScope);
+		        Symbol sy = new Symbol(id, Symbol.Kind.Field, typ, currentScope, -404);
 		        currentScope.define(sy);
 		    }
 		}
@@ -163,7 +163,7 @@ public class SymTabVisitor1 extends GooBaseVisitor<Type> {
 	public Type visitTypeSpec(GooParser.TypeSpecContext ctx) {
 		String name = ctx.Identifier().getText();
 		Type t = visit(ctx.type());
-		Symbol sy = new Symbol(name, Symbol.Kind.TypeName, t, currentScope);
+		Symbol sy = new Symbol(name, Symbol.Kind.TypeName, t, currentScope, -404);
 		currentScope.define(sy);
 		return t;
 	}

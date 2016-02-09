@@ -14,35 +14,35 @@ public class Predefined {
 	}
 
 	private static void addTypeName( String name, Type t, Scope globals ) {
-		Symbol sy = new Symbol(name, Symbol.Kind.TypeName, t, globals);
+		Symbol sy = new Symbol(name, Symbol.Kind.TypeName, t, globals, -3);
 		globals.define(sy);
 	}
 
     private static void addFuncName( String name, Type sig, Scope globals) {
-        Symbol sy = new Symbol(name, Symbol.Kind.Function, sig, globals);
+        Symbol sy = new Symbol(name, Symbol.Kind.Function, sig, globals, -3);
 		globals.define(sy);
     }
 
     private static void addTypeNames(Scope globals) {
-		Type t = Type.newNumericType('i',32);
-		addTypeName(t, globals);
-		addTypeName("rune", t, globals);  // rune is a synonym for int32
-		t = Type.newNumericType('i',32);
-		t.setName("int");
-		addTypeName(t, globals); // int is not same type as int32
-		intType = t;
-		addTypeName(Type.newNumericType('u',32), globals);
-		t = Type.newNumericType('u',32);
-		t.setName("uint");
-		addTypeName(t, globals); // uint is not same type as uint32
-		addTypeName(Type.newNumericType('i',64), globals);
-		addTypeName(Type.newNumericType('u',64), globals);
-		addTypeName(Type.newNumericType('f',32), globals);
-		addTypeName(Type.newNumericType('f',64), globals);
-		addTypeName(Type.stringType, globals);
-		stringType = Type.stringType;
-		addTypeName(Type.boolType, globals);
-		boolType = Type.boolType;
+			Type t = Type.newNumericType('i',32);
+			addTypeName(t, globals);
+			addTypeName("rune", t, globals);  // rune is a synonym for int32
+			t = Type.newNumericType('i',32);
+			t.setName("int");
+			addTypeName(t, globals); // int is not same type as int32
+			intType = t;
+			addTypeName(Type.newNumericType('u',32), globals);
+			t = Type.newNumericType('u',32);
+			t.setName("uint");
+			addTypeName(t, globals); // uint is not same type as uint32
+			addTypeName(Type.newNumericType('i',64), globals);
+			addTypeName(Type.newNumericType('u',64), globals);
+			addTypeName(Type.newNumericType('f',32), globals);
+			addTypeName(Type.newNumericType('f',64), globals);
+			addTypeName(Type.stringType, globals);
+			stringType = Type.stringType;
+			addTypeName(Type.boolType, globals);
+			boolType = Type.boolType;
     }
 
     private static Type newSig( Type formal1, Type result ) {
@@ -81,16 +81,16 @@ public class Predefined {
 		addFuncName("print", sig, globals);
 		addFuncName("println", sig, globals);
 		// and add nil here, since we have pt already set up
-		Symbol nil = new Symbol("nil", Symbol.Kind.Variable, pt, globals);
+		Symbol nil = new Symbol("nil", Symbol.Kind.Variable, pt, globals, -3);
 		globals.define(nil);
     }
 
 	public static void AddPredefinedNames( Scope globals ) {
         addTypeNames(globals);  // this call must be first
         addFunctionNames(globals);
-        Symbol tr = new Symbol("true", Symbol.Kind.Constant, boolType, globals);
+        Symbol tr = new Symbol("true", Symbol.Kind.Constant, boolType, globals, -3);
         globals.define(tr);
-        Symbol fl = new Symbol("false", Symbol.Kind.Constant, boolType, globals);
+        Symbol fl = new Symbol("false", Symbol.Kind.Constant, boolType, globals, -3);
         globals.define(fl);
 	}
 

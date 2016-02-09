@@ -17,7 +17,7 @@ public class Symbol { // A generic programming language symbol
         kind = Kind.Unknown;
         type = Type.unknownType;
         scope = null;
-        linenumber = -1;  // Unknown.
+        linenumber = -403;  // Unknown.
     }
 
     public Symbol(String name, Kind kind, Type type, Scope scope, int linenumber) {

@@ -30,8 +30,8 @@ public class Packages {
     		parms.add(Type.variadicAnyType);
     		results.add(Predefined.intType);  results.add(Predefined.stringType);
     		Type sig = Type.newFunctionSignature(parms,results);
-    		pkg.addMember(new Symbol("Println",Symbol.Kind.Function,sig,scope));
-    		pkg.addMember(new Symbol("Print",Symbol.Kind.Function,sig,scope));
+    		pkg.addMember(new Symbol("Println", Symbol.Kind.Function, sig, scope, -2));
+    		pkg.addMember(new Symbol("Print", Symbol.Kind.Function, sig, scope, -2));
     	}
     }
 
