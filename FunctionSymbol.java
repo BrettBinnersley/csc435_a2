@@ -13,13 +13,13 @@ public class FunctionSymbol extends Symbol implements Scope {
 	Map<String, Symbol> parameters = new LinkedHashMap<String, Symbol>();
 
 	// used when function signature is available
-    public FunctionSymbol(String name, Type signature, Scope enclosingScope) {
-        super(name, Kind.Function, signature, enclosingScope);
+    public FunctionSymbol(String name, Type signature, Scope enclosingScope, int linenumber) {
+        super(name, Kind.Function, signature, enclosingScope, linenumber);
     }
 
 	// otherwise function signature needs to be added later
-    public FunctionSymbol(String name, Scope enclosingScope) {
-        super(name, Kind.Function, null, enclosingScope);
+    public FunctionSymbol(String name, Scope enclosingScope, int linenumber) {
+        super(name, Kind.Function, null, enclosingScope, linenumber);
     }
 
     // look up an identifier, starting with the formals

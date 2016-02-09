@@ -17,7 +17,7 @@ public class SymTabVisitor1 extends GooBaseVisitor<Type> {
 	LinkedList<Type> currentSignatureResult = new LinkedList<Type>();
 	boolean dumpSymTab = false;
 	boolean dumpPredefineds = false;
-	
+
 	// constructor
 	//  t is the -dtsy command line flag
 	//  d is the -dsym command line flag
@@ -46,7 +46,7 @@ public class SymTabVisitor1 extends GooBaseVisitor<Type> {
 	public ParseTreeProperty<Scope> getScopes() {
 		return scopes;
 	}
-	
+
 
 	// *********** Visit methods follow *******************
 
@@ -72,7 +72,7 @@ public class SymTabVisitor1 extends GooBaseVisitor<Type> {
     @Override
 	public Type visitFunctionDecl(GooParser.FunctionDeclContext ctx) {
 		String funcName = ctx.functionName().getText();
-		FunctionSymbol function = new FunctionSymbol(funcName, currentScope);
+		FunctionSymbol function = new FunctionSymbol(funcName, currentScope, -1000);
 		currentScope.define(function);	// add function defn to current scope
 		currentScope = function;		// enter this new scope
 		saveScope(ctx, currentScope);	// remember scope for this parse tree node
