@@ -58,7 +58,7 @@ public class Type {
 	public static Type newArrayType(Type elemType) {
 		return unknownType.new Array(elemType);
 	}
- 
+
  	public static Type newSliceType(Type elemType) {
 		return unknownType.new Slice(elemType);
 	}
@@ -97,47 +97,47 @@ public class Type {
 
     public class Int extends Type {
         private int size;
-        
+
         public Int( int size ) {
             this.size = size;
             name = "int"+size;
         }
-        
+
         public int getSize() { return size; }
     }
 
     public class Uint extends Type {
         private int size;
-        
+
         public Uint( int size ) {
             this.size = size;
             name = "uint"+size;
         }
-        
+
         public int getSize() { return size; }
     }
 
     public class Flt extends Type {
         private int size;
-        
+
         public Flt( int size ) {
             this.size = size;
             name = "float"+size;
         }
-        
+
         public int getSize() { return size; }
     }
 
     public class Array extends Type {
         private Type elementType;
-        
+
         public Array( Type elementType ) {
             this.elementType = elementType;
             name = "[..]";
         }
-        
+
         public Type getElementType() { return elementType; }
-        
+
         @Override
         public String toString() {
             return elementType.toString()+"[..]";
@@ -146,14 +146,14 @@ public class Type {
 
     public class Slice extends Type {
         private Type elementType;
-        
+
         public Slice( Type elementType ) {
             this.elementType = elementType;
             name = "[]";
         }
-        
+
         public Type getElementType() { return elementType; }
-        
+
         @Override
         public String toString() {
             return elementType.toString()+"[]";
@@ -162,14 +162,14 @@ public class Type {
 
     public class Pointer extends Type {
         private Type baseType;
-        
+
         public Pointer( Type baseType ) {
             this.baseType = baseType;
             name = "*";
         }
-        
+
         public Type getBaseType() { return baseType; }
-        
+
         @Override
         public String toString() {
             return "*"+baseType.toString();
@@ -183,7 +183,7 @@ public class Type {
 
 		public Function( LinkedList<Type> parameters, LinkedList<Type> results ) {
 			this.parameters = parameters.toArray(new Type[0]);   // These stupid API calls are a consequence of
-			this.results = results.toArray(new Type[0]);  // a brain-damaged implementation of generics in Java
+			this.results = results.toArray(new Type[0]);         // a brain-damaged implementation of generics in Java
 		}
 
 		public Function( Type[] parameters, Type[] results ) {
@@ -192,7 +192,7 @@ public class Type {
 		}
 
 		public Type[] getParameters() { return parameters; }
-		
+
 		public Type[] getResults() { return results; }
 
 		@Override
