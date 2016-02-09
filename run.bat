@@ -1,0 +1,1 @@
+java -cp .;antlr-4.5.1-complete.jar GooMain -dsym GooProgs/%*
