@@ -1,0 +1,1 @@
+"%JAVA_HOME%/bin/javac" -g -cp ".;antlr-4.5.1-complete.jar;" Goo*.java
