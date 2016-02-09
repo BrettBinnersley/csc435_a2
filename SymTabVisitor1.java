@@ -146,7 +146,7 @@ public class SymTabVisitor1 extends GooBaseVisitor<Type> {
 		if (ids != null) {
 		    for( Token t : ids ) {
 		        String id = t.getText();
-		        Symbol sy = new Symbol(id, Symbol.Kind.Field, typ, currentScope, -404);
+		        Symbol sy = new Symbol(id, Symbol.Kind.Field, typ, currentScope, t.getLine());
 		        currentScope.define(sy);
 		    }
 		}
