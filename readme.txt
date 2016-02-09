@@ -3,8 +3,8 @@ Brett Binnersley
 Sebastien Guillemot
 
 
-
 The project uses Antlr4
 
 To use:
-something.
+javac *.java -classpath antlr-4.5.1-complete.jar
+<run>
