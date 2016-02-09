@@ -104,6 +104,9 @@ public class SymTabVisitor1 extends GooBaseVisitor<Type> {
 		    }
 		}
 		return typ;
+
+		// @Override
+
 	}
 
     @Override
