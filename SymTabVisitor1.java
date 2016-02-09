@@ -168,4 +168,17 @@ public class SymTabVisitor1 extends GooBaseVisitor<Type> {
 		return t;
 	}
 
+    @Override
+    public Type visitTopLevelDeclList(GooParser.TopLevelDeclListContext ctx){
+      return visitChildren(ctx);
+    }
+    
+    @Override
+    public Type visitTopLevelDecl(GooParser.TopLevelDeclContext ctx){
+      if(ctx.functionDecl() != null){
+        return visit(ctx.functionDecl());
+      }else{
+        return null;
+      }
+    }
 }
