@@ -1,11 +1,7 @@
 package main
-
-import "fmt"
-
+type Books struct { title string; author string; info BookInfo }
+type BookInfo struct { subject string; book_id int }
 func main() {
-	var i int
-	var f float64
-	var b bool
-	var s string
-	fmt.Printf("%v %v %v %q\n", i, f, b, s)
+    var Book1 Books
+    Book1.title = "Go Programming"
 }
