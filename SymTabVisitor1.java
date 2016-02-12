@@ -201,7 +201,7 @@ public class SymTabVisitor1 extends GooBaseVisitor<Type> {
       List<GooParser.ExpressionContext> expr = specRem.expressionList().exl;
 
       if (specRem.type() == null) {
-        for (int i=0; i<ids.size(); i++) {
+        for (int i = 0; i < ids.size(); i++) {
           Type exprType = visit(expr.get(i));
           Symbol sy = new Symbol(ids.get(i).getText(), Symbol.Kind.Constant, exprType, currentScope, ids.get(i).getLine());
           currentScope.define(sy);
@@ -247,7 +247,26 @@ public class SymTabVisitor1 extends GooBaseVisitor<Type> {
 
   @Override
   public Type visitVarSpec(GooParser.VarSpecContext ctx) {
-    return visitChildren(ctx);
+    List<Token> ids = ctx.identifierList().idl;
+    GooParser.VarSpecRemContext specRem = ctx.varSpecRem();
+    
+    Type t = specRem.type() == null ? null : visit(specRem.type());
+    List<GooParser.ExpressionContext> expr = specRem.expressionList() == null ? null : specRem.expressionList().exl;
+
+    if (t == null) {
+      for (int i = 0; i < ids.size(); i++) {
+        Type exprType = visit(expr.get(i));
+        Symbol sy = new Symbol(ids.get(i).getText(), Symbol.Kind.Variable, exprType, currentScope, ids.get(i).getLine());
+        currentScope.define(sy);
+      }
+    } else {
+      for (Token tok : ids) {
+        Symbol sy = new Symbol(tok.getText(), Symbol.Kind.Variable, t, currentScope, tok.getLine());
+        currentScope.define(sy);
+      }
+    }
+    return t == null ? Type.unknownType : t; // TODO?
+
   }
 
   @Override
