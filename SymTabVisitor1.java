@@ -73,7 +73,7 @@ public class SymTabVisitor1 extends GooBaseVisitor<Type> {
   @Override
   public Type visitFunctionDecl(GooParser.FunctionDeclContext ctx) {
     String funcName = ctx.functionName().getText();
-    FunctionSymbol function = new FunctionSymbol(funcName, currentScope, -1000);
+    FunctionSymbol function = new FunctionSymbol(funcName, currentScope, ctx.FUNC().getSymbol().getLine());
     currentScope.define(function); // add function defn to current scope
     currentScope = function; // enter this new scope
     saveScope(ctx, currentScope); // remember scope for this parse tree node
@@ -167,7 +167,7 @@ public class SymTabVisitor1 extends GooBaseVisitor<Type> {
   public Type visitTypeSpec(GooParser.TypeSpecContext ctx) {
     String name = ctx.Identifier().getText();
     Type t = visit(ctx.type());
-    Symbol sy = new Symbol(name, Symbol.Kind.TypeName, t, currentScope, -404);
+    Symbol sy = new Symbol(name, Symbol.Kind.TypeName, t, currentScope, ctx.Identifier().getSymbol().getLine());
     currentScope.define(sy);
     return t;
   }
