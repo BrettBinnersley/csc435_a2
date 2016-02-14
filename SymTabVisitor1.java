@@ -200,13 +200,15 @@ public class SymTabVisitor1 extends GooBaseVisitor<Type> {
     if (specRem != null) {
       List<GooParser.ExpressionContext> expr = specRem.expressionList().exl;
 
+      // Unknown type. Set type to unkown.
       if (specRem.type() == null) {
         for (int i = 0; i < ids.size(); i++) {
-          Type exprType = visit(expr.get(i));
+          Type exprType = Type.unknownType;
           Symbol sy = new Symbol(ids.get(i).getText(), Symbol.Kind.Constant, exprType, currentScope, ids.get(i).getLine());
           currentScope.define(sy);
         }
       } else {
+      // Known type. Set type to defined type.
         t = visit(specRem.type());
         for (Token tok : ids) {
           Symbol sy = new Symbol(tok.getText(), Symbol.Kind.Constant, t, currentScope, tok.getLine());
@@ -249,17 +251,19 @@ public class SymTabVisitor1 extends GooBaseVisitor<Type> {
   public Type visitVarSpec(GooParser.VarSpecContext ctx) {
     List<Token> ids = ctx.identifierList().idl;
     GooParser.VarSpecRemContext specRem = ctx.varSpecRem();
-    
+
     Type t = specRem.type() == null ? null : visit(specRem.type());
     List<GooParser.ExpressionContext> expr = specRem.expressionList() == null ? null : specRem.expressionList().exl;
 
+    // Type is unknown.
     if (t == null) {
       for (int i = 0; i < ids.size(); i++) {
-        Type exprType = visit(expr.get(i));
+        Type exprType = Type.unknownType;
         Symbol sy = new Symbol(ids.get(i).getText(), Symbol.Kind.Variable, exprType, currentScope, ids.get(i).getLine());
         currentScope.define(sy);
       }
     } else {
+    // Type is known.
       for (Token tok : ids) {
         Symbol sy = new Symbol(tok.getText(), Symbol.Kind.Variable, t, currentScope, tok.getLine());
         currentScope.define(sy);
