@@ -1,7 +1,6 @@
 Csc 435 (Compilers) Uvic Assignment 2 (University of Victoria).
-Brett Binnersley
-Sebastien Guillemot
-
+  Brett Binnersley, V00776751
+  Sebastien Guillemot, V00741620
 
 The project uses Antlr4
 
