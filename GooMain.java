@@ -1,8 +1,8 @@
 // GooMain.java
 //
 // TEAM MEMBERS:
-//     Brett Binnersley
-//     Sebastien Guillemot
+//     Brett Binnersley, V00776751
+//     Sebastien Guillemot, V00741620
 //
 // Main program which invokes the various compiler phases:
 // lexer/parser, symbol table construction, type checking ...
