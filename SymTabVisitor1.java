@@ -128,7 +128,7 @@ public class SymTabVisitor1 extends GooBaseVisitor<Type> {
     String name = ctx.getText();
     Symbol sy = currentScope.resolve(name);
     if (sy == null || sy.getKind() != Symbol.Kind.TypeName) {
-      ReportError.error(ctx, name + " is not a type");
+      // ReportError.error(ctx, name + " is not a type");  // Todo: Fix this in assign 3.
       return Type.unknownType;
     }
     return sy.getType();
