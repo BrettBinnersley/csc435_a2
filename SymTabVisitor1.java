@@ -135,15 +135,6 @@ public class SymTabVisitor1 extends GooBaseVisitor<Type> {
   }
 
   @Override
-  public Type visitStructType(GooParser.StructTypeContext ctx) {
-    Type t = Type.newStructType(currentScope);
-    currentScope = (Scope) t;
-    visitChildren(ctx);
-    currentScope = currentScope.getEnclosingScope();
-    return t;
-  }
-
-  @Override
   public Type visitFieldDecl(GooParser.FieldDeclContext ctx) {
     List<Token> ids = ctx.identifierList().idl;
     Type typ = visit(ctx.type());
@@ -157,10 +148,32 @@ public class SymTabVisitor1 extends GooBaseVisitor<Type> {
     return typ;
   }
 
+  // Visit the types (Struct, Array, Pointer & Slice are supported)
+  @Override
+  public Type visitStructType(GooParser.StructTypeContext ctx) {
+    Type t = Type.newStructType(currentScope);
+    currentScope = (Scope) t;
+    visitChildren(ctx);
+    currentScope = currentScope.getEnclosingScope();
+    return t;
+  }
+
   @Override
   public Type visitArrayType(GooParser.ArrayTypeContext ctx) {
     Type t = visit(ctx.elementType());
     return Type.newArrayType(t);
+  }
+
+  @Override
+  public Type visitPointerType(GooParser.PointerTypeContext ctx) {
+    Type t = visit(ctx.baseType());
+    return Type.newPointerType(t);
+  }
+
+  @Override
+  public Type visitSliceType(GooParser.SliceTypeContext ctx) {
+    Type t = visit(ctx.elementType());
+    return Type.newSliceType(t);
   }
 
   @Override
@@ -270,7 +283,6 @@ public class SymTabVisitor1 extends GooBaseVisitor<Type> {
       }
     }
     return t == null ? Type.unknownType : t; // TODO?
-
   }
 
   @Override
