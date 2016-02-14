@@ -6,5 +6,7 @@ Sebastien Guillemot
 The project uses Antlr4
 
 To use:
-javac *.java -classpath antlr-4.5.1-complete.jar
-<run>
+% antlr4 -visitor -no-listener Goo.g4
+% javac -g -d bin *.java
+% cd bin
+% java GooMain -dsym <GoProgram>.go
